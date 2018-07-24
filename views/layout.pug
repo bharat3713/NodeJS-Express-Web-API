@@ -1,0 +1,39 @@
+doctype html
+html
+    head
+        title DIGUP
+        link(rel='stylesheet' href='/bower_components/bootstrap/css/bootstrap.css')
+        link(rel='stylesheet' href='/css/style.css')
+    body
+        .container
+            div.navbar.navbar-default
+                ul
+                    li
+                        a(href= "/") home 
+                    if user    
+                        li 
+                            a(href= "/articles/add") Add Article
+                ul.nav.navbar-nav.navbar-right
+                    if user
+                        li 
+                            a(href='/users/Logout') Logout 
+                    else
+                        li
+                            a(href='/users/register') Register
+                        li
+                            a(href='/users/login') Login
+
+
+        .container
+            != messages('message', locals)
+            if errors
+                each error, i in errors
+                    div(class="alert alert-danger") #{error.msg}
+            block content
+            br
+            hr
+            footer
+                p copyright &copy; 2017
+        script(src='/bower_components/jquery/dist/jquery.js')
+        script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+        script(src='/js/main.js')
